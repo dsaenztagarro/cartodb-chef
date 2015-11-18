@@ -9,6 +9,7 @@
 
 recipes = %w(system_requirements
              postgresql
+             postgis
              redis
              ruby)
 
