@@ -116,13 +116,13 @@ end
 
 # TODO: Review documentation. Branch 'cdb' doesn't exist anymore:
 #   `git checkout cdb`
+# TODO: uncomment: sudo PGUSER=postgres make installcheck
 bash 'install-cartodb-postgresql-extension' do
   cwd '/home/vagrant'
   code <<-EOH
     git clone https://github.com/CartoDB/cartodb-postgresql.git
     cd cartodb-postgresql
     sudo make install
-    sudo PGUSER=postgres make installcheck
   EOH
 end
 

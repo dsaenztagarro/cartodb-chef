@@ -1,0 +1,11 @@
+DEPENDENCIES
+  cartodb
+    path: .
+    metadata: true
+  rvm
+    git: git://github.com/dsaenztagarro/rvm-chef.git
+    revision: 27d3d3db21aebc86ef877ab87586b0f2c1decbca
+
+GRAPH
+  cartodb (0.1.0)
+  rvm (0.1.0)
