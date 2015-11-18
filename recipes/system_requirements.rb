@@ -7,8 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
+execute 'apt-get update'
+
 bash 'system_locales' do
-  cwd ::File.dirname(src_filepath)
   code <<-EOH
     locale-gen en_US.UTF-8
     update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
