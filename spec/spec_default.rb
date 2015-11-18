@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'railsapp::default' do
+describe 'cartodb::default' do
   let(:chef_run) do
     ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '12.04') do |node|
       node['cartodb']['editor']['rails_env'] = 'development'
