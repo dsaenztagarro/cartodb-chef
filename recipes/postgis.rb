@@ -1,11 +1,20 @@
+#
+# Cookbook Name:: cartodb
+# Recipe:: postgis
+#
+# Copyright 2015, David Saenz Tagarro
+#
+# All rights reserved - Do Not Redistribute
+#
 
 # Dependencies
 
-bash 'apt-repo-gis' do
-  code <<-EOH
-    add-apt-repository ppa:cartodb/gis
-    apt-get update
-  EOH
+execute 'apt-repo-gis' do
+  command 'add-apt-repository ppa:cartodb/gis'
+end
+
+execute 'apt-get update' do
+  command 'apt-get update'
 end
 
 package 'install-proj' do
