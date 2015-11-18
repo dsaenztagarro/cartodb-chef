@@ -20,6 +20,8 @@ package 'build essentials' do
   package_name %w(autoconf binutils-doc bison build-essential flex)
 end
 
+package %w(git mercurial)
+
 package 'apt-tools' do
   package_name 'python-software-properties'
 end

@@ -1,6 +1,7 @@
 cartodb Cookbook
 ================
-TODO: Enter the cookbook description here.
+
+This cookbook aims to automate the CartoDB installation from [official documentation][1]
 
 e.g.
 This cookbook makes your favorite breakfast sandwich.
@@ -36,6 +37,7 @@ e.g.
 
 Usage
 -----
+
 #### cartodb::default
 TODO: Write usage instructions for each cookbook.
 
@@ -49,6 +51,16 @@ Just include `cartodb` in your node's `run_list`:
     "recipe[cartodb]"
   ]
 }
+```
+
+Running integration tests
+-------------------------
+
+```
+bundle
+berks
+vagrant box add ubuntu-12.04-LTS http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
+kitchen test
 ```
 
 Contributing
@@ -66,3 +78,6 @@ e.g.
 License and Authors
 -------------------
 Authors: TODO: List authors
+
+
+[1](http://cartodb.readthedocs.org/en/latest/install.html)

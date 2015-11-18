@@ -10,6 +10,7 @@ provisioner:
 platforms:
   - name: ubuntu-12.04-LTS
     driver:
+      box: ubuntu-12.04-LTS
       customize:
         memory: 2048
 
