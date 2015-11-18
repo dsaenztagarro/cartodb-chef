@@ -89,4 +89,4 @@ License and Authors
 Authors: David Saenz Tagarro
 
 
-[1](http://cartodb.readthedocs.org/en/latest/install.html)
+[1][http://cartodb.readthedocs.org/en/latest/install.html]
