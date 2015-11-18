@@ -28,16 +28,44 @@ end
 
 # nodejs
 
-node_version = node['cartodb']['system_requirements']['node']['version']
+package 'curl'
 
-execute 'install-nvm' do
-  command 'curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash'
+node_version = node['cartodb']['system_requirements']['node']['version']
+user_name = node['cartodb']['system_requirements']['user']['name']
+user_password = node['cartodb']['system_requirements']['user']['password']
+user_home = node['cartodb']['system_requirements']['user']['home']
+deploy_path = node['cartodb']['system_requirements']['deploy']['path']
+
+source_path = "source #{user_home}/.nvm/nvm.sh"
+
+ruby_block 'install_nvm' do
+  block do
+    cmd = Mixlib::ShellOut.new(
+      "curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash",
+      user: user_name, password: user_password, cwd: deploy_path)
+    cmd.run_command
+    cmd.error!
+  end
 end
 
-bash 'install-node' do
-  code <<-EOH
-    nvm install #{node_version}
-    nvm use #{node_version}
-    nvm alias default #{node_version}
-  EOH
+ruby_block 'install_node' do
+  block do
+    cmd = Mixlib::ShellOut.new(
+      "bash -c '#{source_path} && nvm install #{node_version}'",
+      user: user_name, password: user_password, cwd: deploy_path)
+    cmd.run_command
+    cmd.error!
+
+    cmd = Mixlib::ShellOut.new(
+      "bash -c '#{source_path} && nvm use #{node_version}'",
+      user: user_name, password: user_password, cwd: deploy_path)
+    cmd.run_command
+    cmd.error!
+
+    cmd = Mixlib::ShellOut.new(
+      "bash -c '#{source_path} && nvm alias default #{node_version}'",
+      user: user_name, password: user_password, cwd: deploy_path)
+    cmd.run_command
+    cmd.error!
+  end
 end

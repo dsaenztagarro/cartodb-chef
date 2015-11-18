@@ -1,1 +1,5 @@
-default['cartodb']['system_requirements']['node']['version'] = '0.10'
+default['cartodb']['system_requirements']['node']['version'] = '0.10.40'
+default['cartodb']['system_requirements']['user']['name'] = 'vagrant'
+default['cartodb']['system_requirements']['user']['password'] = 'vagrant'
+default['cartodb']['system_requirements']['user']['home'] = '/home/vagrant'
+default['cartodb']['system_requirements']['deploy']['path'] = '/home/vagrant'
