@@ -1,18 +1,27 @@
+[![Build Status](https://travis-ci.org/dsaenztagarro/cartodb-chef.svg?branch=master)](https://travis-ci.org/dsaenztagarro/cartodb-chef)
+[![Code Climate](https://codeclimate.com/github/dsaenztagarro/cartodb-chef/badges/gpa.svg)](https://codeclimate.com/github/dsaenztagarro/cartodb-chef)
+[![Coverage Status](https://coveralls.io/repos/dsaenztagarro/cartodb-chef/badge.svg?branch=master&service=github)](https://coveralls.io/github/dsaenztagarro/cartodb-chef?branch=master)
+[![Dependency Status](https://gemnasium.com/dsaenztagarro/cartodb-chef.svg)](https://gemnasium.com/dsaenztagarro/cartodb-chef)
+
 cartodb Cookbook
 ================
 
 This cookbook aims to automate the CartoDB installation from [official documentation][1]
 
-e.g.
-This cookbook makes your favorite breakfast sandwich.
-
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
 
-e.g.
+#### Platforms
+- Ubuntu 12.04 LTS
+
+#### Chef
+- Chef 12.2.0
+
+#### Cookbooks
+- rvm
+
 #### packages
-- `toaster` - cartodb needs toaster to brown your bagel.
+- `default` - full cartodb installation 
 
 Attributes
 ----------
@@ -77,7 +86,7 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: David Saenz Tagarro
 
 
 [1](http://cartodb.readthedocs.org/en/latest/install.html)

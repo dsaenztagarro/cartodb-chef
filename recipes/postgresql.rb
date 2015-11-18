@@ -75,9 +75,8 @@ end
 
 include_recipe 'cartodb::postgis'
 
-# TODO: Review documentation. Branch 'cdb' doesn't exist anymore:
-#   `git checkout cdb`
-# TODO: uncomment: sudo PGUSER=postgres make installcheck
+# TODO: Add installcheck command once fixed tests
+#   sudo PGUSER=postgres make installcheck
 bash 'install-cartodb-postgresql-extension' do
   cwd '/home/vagrant'
   code <<-EOH
