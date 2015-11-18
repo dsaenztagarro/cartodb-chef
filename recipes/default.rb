@@ -11,6 +11,7 @@ recipes = %w(system_requirements
              postgresql
              postgis
              redis
+             apis
              ruby)
 
 recipes.each { |recipe| include_recipe "cartodb::#{recipe}" }
