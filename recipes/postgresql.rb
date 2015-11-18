@@ -40,3 +40,7 @@ bash 'install-schema-triggers' do
     apt-get install postgresql-9.3-pg-schema-triggers
   EOH
 end
+
+cookbook_file '/etc/postgresql/9.3/main/pg_hba.conf' do
+  source 'pg_hba.conf'
+end
