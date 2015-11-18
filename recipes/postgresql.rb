@@ -7,23 +7,12 @@
 # All rights reserved - Do Not Redistribute
 #
 
-bash 'apt-add-repositories' do
+bash 'add-repo-postgresql' do
   code <<-EOH
     apt-add-repository --yes ppa:cartodb/postgresql-9.3
-    apt-add-repository --yes ppa:cartodb/gis
-    add-apt-repository ppa:cartodb/nodejs-010
     apt-get update
   EOH
 end
-
-# TODO: Review documentation. Check apt-repository 'ppa:cartodb/postgresql-9.3'
-# bash 'fix-add-app-repository' do
-#   code <<-EOH
-#     sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-#     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-#     apt-get update
-#   EOH
-# end
 
 package 'install-client-packages' do
   package_name %w(libpq5
@@ -39,24 +28,14 @@ package 'install-server-packages' do
                   postgresql-plpython-9.3)
 end
 
-# bash 'install-schema-triggers' do
-#   code <<-EOH
-#     add-apt-repository ppa:cartodb/pg-schema-trigger
-#     apt-get update
-#     apt-get install postgresql-9.3-pg-schema-triggers
-#   EOH
-# end
-
-
-bash 'install-schema-triggers-2' do
-  cwd '/home/vagrant'
+bash 'apt-repo-pg-schema-trigger' do
   code <<-EOH
-    hg clone https://bitbucket.org/malloclabs/pg_schema_triggers
-    cd pg_schema_triggers
-    make
-    sudo make
+    add-apt-repository ppa:cartodb/pg-schema-trigger
+    apt-get update
   EOH
 end
+
+package 'postgresql-9.3-pg-schema-triggers'
 
 cookbook_file '/etc/postgresql/9.3/main/postgresql.conf' do
   source 'postgresql.conf'
@@ -72,6 +51,13 @@ end
 
 # GIS dependencies
 
+bash 'apt-repo-gis' do
+  code <<-EOH
+    add-apt-repository ppa:cartodb/gis
+    apt-get update
+  EOH
+end
+
 package 'install-proj' do
   package_name %w(proj proj-bin proj-data libproj-dev)
 end
@@ -85,24 +71,31 @@ package 'install-geos' do
 end
 
 package 'install-gdal' do
-  package_name %w(gdal-bin libgdal1-dev)
+  package_name %w(gdal-bin libgdal1-dev libgdal-dev ogr2ogr2-static-bin)
 end
 
 # NODEJS
 
-package %w(nodejs npm)
-
-bash 'sql-api' do
-  cwd '/home/vagrant'
-  code <<-EOH
-    git clone git://github.com/CartoDB/CartoDB-SQL-API.git
-    cd CartoDB-SQL-API
-    git checkout master
-    npm install
-    cp config/environments/development.js.example config/environments/development.js
-    node app.js development
-  EOH
-end
+# bash 'apt-repo-node' do
+#   code <<-EOH
+#     add-apt-repository ppa:cartodb/nodejs-010
+#     apt-get update
+#   EOH
+# end
+#
+# package 'nodejs'
+#
+# bash 'sql-api' do
+#   cwd '/home/vagrant'
+#   code <<-EOH
+#     git clone git://github.com/CartoDB/CartoDB-SQL-API.git
+#     cd CartoDB-SQL-API
+#     git checkout master
+#     npm install
+#     cp config/environments/development.js.example config/environments/development.js
+#     node app.js development
+#   EOH
+# end
 
 # POSTGIS
 
@@ -132,7 +125,7 @@ bash 'install-cartodb-postgresql-extension' do
     sudo PGUSER=postgres make installcheck
   EOH
 end
-#
+
 # bash 'create-users' do
 #   code <<-EOH
 #     createuser publicuser --no-createrole --no-createdb --no-superuser -U postgres

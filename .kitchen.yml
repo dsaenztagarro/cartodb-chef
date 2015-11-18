@@ -12,7 +12,7 @@ platforms:
     driver:
       box: ubuntu-12.04-LTS
       customize:
-        memory: 2048
+        memory: 4096
 
 suites:
   - name: default
