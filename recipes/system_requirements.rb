@@ -9,19 +9,31 @@
 
 execute 'apt-get update'
 
-bash 'system_locales' do
+bash 'system-locales' do
   code <<-EOH
     locale-gen en_US.UTF-8
     update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
   EOH
 end
 
-package 'build essentials' do
+package 'build-essentials' do
   package_name %w(autoconf binutils-doc bison build-essential flex)
 end
 
-package %w(git mercurial)
+package 'git'
 
 package 'apt-tools' do
   package_name 'python-software-properties'
 end
+
+# nodejs
+
+execute 'add-apt-repo node' do
+  command 'add-apt-repository ppa:cartodb/nodejs-010'
+end
+
+execute 'apt-get update' do
+  command 'apt-get update'
+end
+
+package 'nodejs'
