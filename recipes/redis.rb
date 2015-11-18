@@ -15,5 +15,5 @@ bash 'add-repo-redis' do
 end
 
 execute 'install-redis' do
-  command 'apt-get install redis-server'
+  command 'apt-get install -y redis-server'
 end

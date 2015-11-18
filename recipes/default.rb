@@ -8,6 +8,8 @@
 #
 
 recipes = %w(system_requirements
-             postgresql)
+             postgresql
+             redis
+             ruby)
 
 recipes.each { |recipe| include_recipe "cartodb::#{recipe}" }
