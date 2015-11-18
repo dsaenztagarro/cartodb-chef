@@ -28,12 +28,16 @@ end
 
 # nodejs
 
-execute 'add-apt-repo node' do
-  command 'add-apt-repository ppa:cartodb/nodejs-010'
+node_version = node['cartodb']['system_requirements']['node']['version']
+
+execute 'install-nvm' do
+  command 'curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash'
 end
 
-execute 'apt-get update' do
-  command 'apt-get update'
+bash 'install-node' do
+  code <<-EOH
+    nvm install #{node_version}
+    nvm use #{node_version}
+    nvm alias default #{node_version}
+  EOH
 end
-
-package 'nodejs'
