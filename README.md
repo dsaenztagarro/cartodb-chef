@@ -6,7 +6,7 @@
 cartodb Cookbook
 ================
 
-This cookbook aims to automate the CartoDB installation from [official documentation][1]
+This cookbook aims to automate the CartoDB installation from [official documentation](http://cartodb.readthedocs.org/en/latest/install.html)
 
 Requirements
 ------------
@@ -88,5 +88,3 @@ License and Authors
 -------------------
 Authors: David Saenz Tagarro
 
-
-[1][http://cartodb.readthedocs.org/en/latest/install.html]

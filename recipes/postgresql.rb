@@ -49,30 +49,6 @@ execute 'restart-postgresql' do
   command 'service postgresql restart'
 end
 
-
-# NODEJS
-
-# bash 'apt-repo-node' do
-#   code <<-EOH
-#     add-apt-repository ppa:cartodb/nodejs-010
-#     apt-get update
-#   EOH
-# end
-#
-# package 'nodejs'
-#
-# bash 'sql-api' do
-#   cwd '/home/vagrant'
-#   code <<-EOH
-#     git clone git://github.com/CartoDB/CartoDB-SQL-API.git
-#     cd CartoDB-SQL-API
-#     git checkout master
-#     npm install
-#     cp config/environments/development.js.example config/environments/development.js
-#     node app.js development
-#   EOH
-# end
-
 include_recipe 'cartodb::postgis'
 
 # TODO: Add installcheck command once fixed tests
@@ -85,10 +61,3 @@ bash 'install-cartodb-postgresql-extension' do
     sudo make install
   EOH
 end
-
-# bash 'create-users' do
-#   code <<-EOH
-#     createuser publicuser --no-createrole --no-createdb --no-superuser -U postgres
-#     createuser tileuser --no-createrole --no-createdb --no-superuser -U postgres
-#   EOH
-# end
