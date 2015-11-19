@@ -51,10 +51,12 @@ end
 
 include_recipe 'cartodb::postgis'
 
+deploy_path = node['cartodb']['deploy']['path']
+
 # TODO: Add installcheck command once fixed tests
 #   sudo PGUSER=postgres make installcheck
 bash 'install-cartodb-postgresql-extension' do
-  cwd '/home/vagrant'
+  cwd deploy_path
   code <<-EOH
     git clone https://github.com/CartoDB/cartodb-postgresql.git
     cd cartodb-postgresql
